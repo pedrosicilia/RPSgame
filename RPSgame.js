@@ -1,3 +1,31 @@
+const container = document.querySelector('#container');
+
+
+const rockbtn = document.createElement('button');
+rockbtn.textContent = "Rock";
+rockbtn.id = 'rock';
+
+const paperbtn = document.createElement('button');
+paperbtn.textContent = "Paper";
+paperbtn.id = 'paper';
+const scissorsbtn = document.createElement('button');
+scissorsbtn.textContent = "Scissors";
+scissorsbtn.id = 'scissors';
+container.appendChild(rockbtn);
+container.appendChild(paperbtn);
+container.appendChild(scissorsbtn);
+
+
+const buttons = container.querySelectorAll('button')
+
+buttons.forEach((button) => {
+
+  button.addEventListener('click', (i) => {
+      i.target.style.background = 'red';
+  
+  })
+});
+
 
 
 
@@ -15,10 +43,11 @@ let getComputerChoice = () =>  {
   return "Error";
 }
 
-let playerChoice = () => {
-  return "rock"
+/*let playerChoice = (choice) => {
+  console.log(choice);
+  return choice;
 }
-
+*/
 function playRound(playerSelection, getComputerChoice) {
 
   playerSelection = playerSelection.toLowerCase();
