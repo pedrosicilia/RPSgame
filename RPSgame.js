@@ -35,7 +35,6 @@ buttons.forEach((button) => {
       playerSelection = button.id;
       console.log(playerSelection);
       results.textContent = playRound(playerSelection, getComputerChoice());
-      //results.textContent = "HELLO";
       indivresults.textContent = `${playerScore} - ${compScore}`;
       results.style.removeProperty('color');
       if((playerScore === 5)) {
@@ -65,7 +64,6 @@ function endGame(won) {
 
   playerScore = 0;
   compScore = 0;
- // indivresults.textContent = `${playerScore} - ${compScore}`;
   return;
 }
 
@@ -92,11 +90,7 @@ let getComputerChoice = () =>  {
   return "Error";
 }
 
-/*let playerChoice = (choice) => {
-  console.log(choice);
-  return choice;
-}
-*/
+
 function playRound(playerSelection, getComputerChoice) {
 
   playerSelection = playerSelection.toLowerCase();
@@ -132,12 +126,8 @@ let game = () => {
   let compScore = 0;
   let Round = 1;
 
-  //console.log("computerSelection: ", computerSelection);
- // console.log("playerSelection: ", computerSelection);
-
   for(let i = 0; i < 5;i++) {
     let result = playRound(playerSelection, getComputerChoice());
-    //console.log("RESULT: ", result);
     switch(result) {
       case 'You Win!':
         userScore++;
@@ -165,7 +155,7 @@ let game = () => {
     return "YOU LOST IT ALL";
   }
   else{
-    return "How's we get here?";
+    return "How'd we get here?";
   }
 
 }
