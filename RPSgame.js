@@ -31,8 +31,10 @@ buttons.forEach((button) => {
 
   button.addEventListener('click', (i) => {
       playerSelection = button.id;
-      console.log(playRound(playerSelection, getComputerChoice()))
+      //console.log(playRound(playerSelection, getComputerChoice()))
+      results.textContent = playRound(playerSelection, getComputerChoice());
       indivresults.textContent = `${playerScore} - ${compScore}`;
+      
   });
   
 });
