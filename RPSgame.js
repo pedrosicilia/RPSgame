@@ -3,10 +3,10 @@ let playerSelection = 'rock';
 let computerSelection;
 let compScore = 0;
 let playerScore = 0;
-
-
+let result;
 
 const container = document.querySelector('#container');
+const container2 = document.querySelector('#container2');
 const indivresults = document.querySelector('#indivresults');
 const results = document.querySelector('#results');
 
@@ -15,11 +15,13 @@ rockbtn.textContent = "Rock";
 rockbtn.id = 'rock';
 
 const paperbtn = document.createElement('button');
-paperbtn.textContent = "Paper";
 paperbtn.id = 'paper';
+paperbtn.textContent = "Paper";
+
 const scissorsbtn = document.createElement('button');
-scissorsbtn.textContent = "Scissors";
 scissorsbtn.id = 'scissors';
+scissorsbtn.textContent = "Scissors";
+
 container.appendChild(rockbtn);
 container.appendChild(paperbtn);
 container.appendChild(scissorsbtn);
@@ -31,13 +33,41 @@ buttons.forEach((button) => {
 
   button.addEventListener('click', (i) => {
       playerSelection = button.id;
-      //console.log(playRound(playerSelection, getComputerChoice()))
+      console.log(playerSelection);
       results.textContent = playRound(playerSelection, getComputerChoice());
+      //results.textContent = "HELLO";
       indivresults.textContent = `${playerScore} - ${compScore}`;
-      
+      results.style.removeProperty('color');
+      if((playerScore === 5)) {
+        endGame(true);
+        }
+      else if(compScore === 5) {
+          endGame(false);
+        };
+  
   });
   
 });
+
+
+
+
+function endGame(won) {
+  if(won){
+    results.textContent = "YOU WON THE WHOLE GAME";
+    results.style.color = 'Green';
+  }
+
+  else {
+    results.textContent = "YOU LOST THE WHOLE GAME";
+    results.style.color = 'Red';
+  }
+
+  playerScore = 0;
+  compScore = 0;
+ // indivresults.textContent = `${playerScore} - ${compScore}`;
+  return;
+}
 
 
 let addcompScore = () =>{
@@ -70,40 +100,26 @@ let getComputerChoice = () =>  {
 function playRound(playerSelection, getComputerChoice) {
 
   playerSelection = playerSelection.toLowerCase();
-  
+  container2.textContent = `Computer chose ${getComputerChoice.charAt(0).toUpperCase() + getComputerChoice.slice(1)}`;
   console.log("User: ", playerSelection , "\nComputer : ", getComputerChoice)
 
-  if(playerSelection == 'rock' && getComputerChoice == 'paper') {
-    addcompScore();
-    return "You Lose!";
-  }
-  if(playerSelection == 'rock' && getComputerChoice == 'scissors') {
+  if (
+    (playerSelection === 'rock' && getComputerChoice === 'scissors') ||
+    (playerSelection === 'paper' && getComputerChoice === 'rock') ||
+    (playerSelection === 'scissors' && getComputerChoice === 'paper')
+  ) {
     addplayerScore();
     return "You Win!";
   }
-  if(playerSelection == 'rock' && getComputerChoice == 'rock') {
-    return "It's a Tie!";
-  }
-  if(playerSelection == 'paper' && getComputerChoice == 'rock') {
-    addplayerScore();
-    return "You Win!";
-  }
-  if(playerSelection == 'paper' && getComputerChoice == 'scissors') {
+  if (
+    (playerSelection === 'rock' && getComputerChoice === 'paper') ||
+    (playerSelection === 'scissors' && getComputerChoice === 'rock') ||
+    (playerSelection === 'paper' && getComputerChoice === 'scissors')
+  ) {
     addcompScore();
     return "You Lose!";
   }
-  if(playerSelection == 'paper' && getComputerChoice == 'paper') {
-    return "It's a Tie!";
-  }
-  if(playerSelection == 'scissors' && getComputerChoice == 'paper') {
-    addplayerScore();
-    return "You Win!";
-  }
-  if(playerSelection == 'scissors' && getComputerChoice == 'rock') {
-    addcompScore();
-    return "You Lose!";
-  }
-  if(playerSelection == 'scissors' && getComputerChoice == 'scissors') {
+  if (playerSelection === getComputerChoice) {
     return "It's a Tie!";
   }
 
@@ -153,15 +169,3 @@ let game = () => {
   }
 
 }
-/* This arrow function is a shorter form of:
-
-let sum = function(a, b) {
-  return a + b;
-};
-*/
-//const playerSelection = playerChoice();
-//const computerSelection = getComputerChoice();
-
-
-
-//console.log(game()); 
